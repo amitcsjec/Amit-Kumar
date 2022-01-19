@@ -1,0 +1,240 @@
+							API DESIGN : API DEVELOPMENT
+							-----------------------------
+
+Rest API Development Constraints:
+---------------------------------
+1) Cache - Reduce latency, Increase availability and reliability, Reduce server load
+2) Client-Server - Separate technology stack, Adhere to the Uniformed interface, Separation of concerns(SoC), Evolve independently
+3) Code-on-demand - Java applets and falsh, Client-side scripts, Optional feature
+4) Layered System - Mediate servers, Load-balancing, Improved scalability
+5) Stateless - Client includes all information, Enables greater availability, Reduces network optimization
+6) Uniformed interface - Hypermedia as the engine of application state(HATEOAS), manipulation of resources through representations, Resource based, Self-descriptive
+                         messages
+
+Anatomy of a Request:
+----------------------
+1) Endpoint - Root-endpoint, Path, Query parameters
+2) Method - use http methods like GET, POST, PUT, DELETE, PATCH
+3) Header - contains Authentication information, Property-value pairs, Provides body information
+4) Body - information for the server, Form fields, Mix parameters
+
+REST API Consumption in C#:
+---------------------------
+1) HttpWebRequest/Response class:-  these are objects at the core lower-level of the API for consuming REST functionality. So it helps us make any HTTP request.
+   ------------------------------
+
+2) HttpClient class:- It is a fast and easy way to make web API calls, still at the lower-level.
+   ------------------
+
+3) RestSharp:- We have a higher-level abstraction with RestSharp. So this is an HTTP client library built for consuming REST APIs.
+   ----------
+
+4) WebClient class:- It is a high-level interface to the HTTP web request library, and this is to help simplify the interface.
+   -----------------
+
+REST API Consumption in Python:
+-------------------------------
+1) Utilize requests module - We can use the request library which we can use to build an API front end and we can use it for building unit tests for the API.
+2) Use of PycURL library - This comes up often in performance testing using Python, since PycURL is known for its speed and its features.
+3) Response object - from that we can read the HTTP status codes to determine whether or not the request was successful.
+4) Status codes
+
+SOAP Web Services Constraints:-
+--------------------------------
+1) Callback mechanism
+2) Request limits
+3) SOAP limits
+
+Other factors are:-
+1) Total requests - which means the individual parts that make up a request
+2) Concurrent requests - managing multiple clients, updating the resource at the same time.
+
+No Callback Mechanism:-
+-------------------------
+* Must be client handled
+   * Client systems are not configured to handle incoming HTTP requests
+
+Handle Callback Mechanism in SOAP:-
+-----------------------------------
+Periodic Polling:
+-----------------
+* Client and server methods
+      * Client system periodically polls server to determine if events have occurred.
+
+SOAP Faults:-
+--------------
+1) SoapException exception
+2) Transmit status/error
+3) One fault per message
+4) Modeled/unmodeled
+
+SOAP Web Services Best Practices:
+----------------------------------
+1) Planning
+   i) Asynchronous Processing
+  ii) Queue API calls
+  iii) Plan the flow of data
+  iv) Consider future growth
+   v) Perform stress testing
+
+2) Security
+   i) Use strong passwords
+  ii) Restrict partner access
+  iii) Separate user credentials
+
+3) Data Management
+   i) Aoid updating via multiple calls
+  ii) Avoid using partner properties
+  iii) Import information via batches
+  iv) Use Key properties over ID properties
+
+4) Triggered Sends
+   i) Maximum payloads
+  ii) Avoid unlimited of text columns
+ iii) Pass less attributes
+
+5) Timeouts and Connection Failures
+   i) Use CorrelationID property
+  ii) Set client-side timeouts
+ iii) Use client-side logging
+
+Web API Security Risks
+-----------------------
+1) Injection attacks
+2) Denial of service attacks
+3) Inadequate security
+4) Men-in-the-middle attacks
+5) Data exposure
+
+1) Injection attacks:
+   ------------------
+   Types of attacks:
+   -----------------
+   1) SQLInjection(SQLi)
+   2) Cross-site Scripting (XSS) - This is injecting JavaScript into pages through variables such as in the Get request.
+   3) XPath injection
+   4) Code injection - Any server-side language can potentially be exploited this way if arbitrary code is allowed to run. This is done through Shell execution 
+      --------------   or functions that execute strings as code. So any string that gets executed in some statement must be escaped before it's executed. 
+                       So it's not seen as code but seen as strings.
+   5) SMTP Injection - This is adding code to e-mail or attacking the e-mail servers through mail messages.
+   6) OS Command injection - Often looking to gain root access or elevated privileges beyond the API and into the server itself.
+
+Impact of attacks:
+-------------------
+1) Full system compromise
+2) Account impersonation
+3) Defacement
+4) Cache poisoning
+5) Authentication bypassing
+6) Data loss/theft
+
+2) Denial of Service (DoS) Attack:- These can be application layer attacks, so using low and slow attacks, or Get and POST floods.
+   --------------------------------
+   Types of attacks:
+   -----------------
+   1) Application layer attacks - Low-and-slow attacks, GET/POST floods
+   2) Protocol attacks - SYN flood, fragmented packet attacks
+   3) Volume-based attacks - UDP flood, ICMP (ping) flood
+
+3) Inadequate Security:-
+   --------------------
+   Types of attacks:-
+   ------------------
+   1) Inadequate authentication - resources being too open, or resources that should be protected by login, or some other authentication method are left unchecked.
+   2) Lack of TSL/SSL - Transport Layer Security
+   3) Insecure endpoints - Leak information about the service or its users inadvertently.
+   4) Lack of encryption - We have to deal with the lack of encryption or using weak encryption methods, ciphers, or outdated hashing methods.
+
+4) Man-in-the-Middle Attack (MITM):-
+   --------------------------------
+   1) Interception of data
+   2) Alternate connection
+   3) Decryption
+
+5) Data Exposure:-
+   --------------
+   1) Lack of encryption
+   2) Use SSL/TLS
+   3) Exchange Practices
+
+API Security Risk Mitigation:-
+------------------------------
+1) Parameter attacks
+2) MITM attacks
+3) Identity attacks
+4) Denial of service attacks
+
+1) Parameter Attack Mitigation:- parameter attacks are parameters or inputs that are constructed for malicious purposes.
+   -----------------------------
+   i) Input validation
+  ii) Threat detection
+ iii) Virus detection
+
+2) Identity Attack Mitigation:-
+   ---------------------------
+   i) Authentication
+  ii) Authorization
+ iii) Geolocation
+  iv) Source IP
+
+Man-in-the-Middle Mitigation:-
+-----------------------------
+1) Use TSL/SSL
+2) Employ encryption
+3) Manage certificates
+
+Denial of Service Attack Mitigation:-
+--------------------------------------
+1) Scrubbing
+2) Blocking traffic
+3) Captcha
+
+Benefits of Reusable Code:
+-------------------------
+1) Reduced development time - Throughly tested, Reduced stress, Improved quality
+2) Decreased project costs
+3) Increased functionality
+
+Technical Challanges:
+---------------------
+1) Maintainability
+2) Performance
+3) Reliability
+3) Security
+
+Risks of Code Reuse
+--------------------
+1) Third-party changes
+2) Vulnerability
+3) Insecure code
+4) Exponential impact
+
+Reusable API Code Design
+------------------------
+Creating Reusable Code:
+-----------------------
+1) Avoid duplication
+2) Focus on single functionality
+3) Refactor existing code
+4) Prevent excessive inheritence
+5) Utilize loose coupling
+
+Scope of the API:
+-----------------
+1) Number of consuming applications
+2) Requirements of consuming systems
+3) Plans of expanding API usage
+
+API Security:
+------------
+1) Types of data
+2) Security policies
+3) Access rights
+
+Static Analysis:
+----------------
+1) Automate code review
+2) Enforce coding standards
+3) Reduce cyclomatic complexity
+4) Ensure reliability and security
+
